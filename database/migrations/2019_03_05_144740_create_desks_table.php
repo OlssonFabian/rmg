@@ -15,9 +15,11 @@ class CreateDesksTable extends Migration
     {
         Schema::create('desks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->integer('rent_interval');
             $table->integer('price');
             $table->text('description');
+            $table->text('picture');
             $table->timestamps();
         });
     }

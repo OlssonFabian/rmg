@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChairsTable extends Migration
+class CreateChairMaterialTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateChairsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chairs', function (Blueprint $table) {
+        Schema::create('chair_material', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id');
-            $table->integer('rent_interval');
-            $table->integer('price');
-            $table->text('description');
-            $table->text('picture');
+            $table->bigInteger('chair_id');
+            $table->bigInteger('material_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateChairsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chairs');
+        Schema::dropIfExists('chair_material');
     }
 }
