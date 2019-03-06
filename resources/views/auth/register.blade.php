@@ -40,6 +40,48 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="phone_nr" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone_nr" type="text" class="form-control{{ $errors->has('phone_nr') ? ' is-invalid' : '' }}" name="phone_nr" value="{{ old('phone_nr') }}" required autofocus>
+
+                                @if ($errors->has('phone_nr'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone_nr') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>
+
+                                @if ($errors->has('address'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="town" class="col-md-4 col-form-label text-md-right">{{ __('Town') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="town" type="text" class="form-control{{ $errors->has('town') ? ' is-invalid' : '' }}" name="town" value="{{ old('town') }}" required autofocus>
+
+                                @if ($errors->has('town'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('town') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
