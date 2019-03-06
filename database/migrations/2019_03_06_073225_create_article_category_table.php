@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDeskMaterialTable extends Migration
+class CreateArticleCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDeskMaterialTable extends Migration
      */
     public function up()
     {
-        Schema::create('desk_material', function (Blueprint $table) {
+        Schema::create('article_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('desk_id');
-            $table->bigInteger('material_id');
+            $table->integer('article_id');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDeskMaterialTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('desk_material');
+        Schema::dropIfExists('article_category');
     }
 }
