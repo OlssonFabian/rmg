@@ -11,11 +11,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                @auth
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/home') }}">
-                        Home <span class="caret"></span>
+                    <a class="nav-link" href="{{ url('/dashboard') }}">
+                        Dashboard <span class="caret"></span>
                     </a>
                 </li>
+                @endauth
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/chairs') }}">
