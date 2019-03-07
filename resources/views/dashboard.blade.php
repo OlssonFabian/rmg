@@ -16,7 +16,9 @@
                             </div>
                         @endif
 
-                        You are logged in!
+                        <p>Din sida info...</p>
+                        <p>Dina uthyrda möbler</p>
+
                     </div>
                 </div>
             </div>
