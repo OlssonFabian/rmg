@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', 'PageController@welcome');
 
 Route::middleware(['auth'])->group(function() {
-	Route::resource('/projects', 'ProjectController');
-	Route::resource('/todos', 'TodoController');
+	Route::resource('/articles', 'ArticleController');
+	Route::resource('/orders', 'OrderController');
 	Route::get('/dashboard', 'DashboardController@index');
 });
