@@ -7,39 +7,44 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+//Navbar
 .navbar-laravel {
     background-color: $blue;
     padding: 5vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-      & a {
+
+    & a {
         color: $white;
         transition: all 0.3s ease 0s;
-          :hover {
+
+        :hover {
             background-color: $blue;
-            box-shadow: 0px 5px 10px rgba(238, 240, 239, 0.4);
             color: #fff;
             transform: translateY(-7px);
-          }
-      }
+        }
+    }
 }
+
 div.dropdown-menu.dropdown-menu-right.show {
-  & a {
-      color: $black;
-  }
+    & a {
+        color: $black;
+    }
 }
 
 a.nav-link:hover {
     background-color: $blue;
-    box-shadow: 0px 5px 10px rgba(238, 240, 239, 0.4);
     color: #fff;
     transform: translateY(-7px);
 }
 
+//Footer
 .footer {
-  background-color: $blue;
-  padding: 5vh;
+    background-color: $blue;
+    padding: 5vh;
+
     & a {
         color: $white;
     }
-  color:$white;
+
+    color:$white;
 }

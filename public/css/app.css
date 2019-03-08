@@ -10668,7 +10668,6 @@ a.text-dark:focus {
 
 .navbar-laravel a :hover {
   background-color: #006F94;
-  box-shadow: 0px 5px 10px rgba(238, 240, 239, 0.4);
   color: #fff;
   -webkit-transform: translateY(-7px);
           transform: translateY(-7px);
@@ -10680,7 +10679,6 @@ div.dropdown-menu.dropdown-menu-right.show a {
 
 a.nav-link:hover {
   background-color: #006F94;
-  box-shadow: 0px 5px 10px rgba(238, 240, 239, 0.4);
   color: #fff;
   -webkit-transform: translateY(-7px);
           transform: translateY(-7px);
