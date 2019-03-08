@@ -21,8 +21,8 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('town');
             $table->string('email');
-            $table->timestamp('date_start');
-            $table->timestamp('date_end');
+            $table->date('date_start');
+            $table->date('date_end');
             $table->timestamps();
         });
     }
