@@ -72,6 +72,34 @@
             </div>
         </nav>
 
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 84px;
+        }
+
+        .links > a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .m-b-md {
+            margin-bottom: 30px;
+        }
+
+    </style>
+    
+</head>
+<body>
+    <div id="app">
+            @include('inc.navbar')
         <main class="py-4">
             @yield('content')
         </main>
