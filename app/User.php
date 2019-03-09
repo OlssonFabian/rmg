@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone_nr', 'town', 'address', 'provider_id'
+        'name', 'email', 'password', 'phone_nr', 'town', 'address',
     ];
 
     /**
@@ -41,4 +41,9 @@ class User extends Authenticatable
     public function articles() {
         return $this->hasMany(Article::class);
     }
+
+    public function identities()
+    {
+        return $this->hasMany('App\SocialIdentity');
+}
 }

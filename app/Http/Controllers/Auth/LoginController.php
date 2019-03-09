@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\SocialIdentity;
 
 
 class LoginController extends Controller
@@ -46,9 +47,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -56,23 +57,43 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-        $githubUser = Socialite::driver('github')->user();
-
-        $user = User::where('provider_id', $githubUser->getId())->first();
-
-        if(!$user){
-            $user = User::create([
-                'email' => $githubUser->getEmail(),
-                'name' => $githubUser->getName(),
-                'provider_id' => $githubUser->getId(),
-            ]);
+        try {
+            $user = Socialite::driver($provider)->user();
+        } catch (Exception $e) {
+            return redirect('/login');
         }
 
-
-
-        Auth::login($user, true);
+        $authUser = $this->findOrCreateUser($user, $provider);
+        Auth::login($authUser, true);
         return redirect($this->redirectTo);
     }
+
+    public function findOrCreateUser($providerUser, $provider)
+    {
+        $account = SocialIdentity::whereProviderName($provider)
+            ->whereProviderId($providerUser->getId())
+            ->first();
+
+        if ($account) {
+            return $account->user;
+        } else {
+            $user = User::whereEmail($providerUser->getEmail())->first();
+
+            if (!$user) {
+                $user = User::create([
+                    'email' => $providerUser->getEmail(),
+                    'name'  => $providerUser->getName(),
+                ]);
+            }
+
+            $user->identities()->create([
+                'provider_id'   => $providerUser->getId(),
+                'provider_name' => $provider,
+            ]);
+
+            return $user;
+       }
+   }
 }
