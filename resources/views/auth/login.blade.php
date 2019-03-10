@@ -64,7 +64,11 @@
                                     </button>
 
                                     <a href="{{ url('/login/github') }}" class="btn btn-primary"><i class="fa fa-github"></i> Github</a>
+                                    <!-- /*
+                                    Facebook login behöver behöver https adress/ SSL-certifikat för att funka. 
+                                    Går fixa när sidan ligger på webbhotell.
                                     <a href="{{ url('/login/facebook') }}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
+                                    */ -->
                                     @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
