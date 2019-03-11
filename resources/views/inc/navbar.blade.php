@@ -20,14 +20,20 @@
                 @endauth
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/chairs') }}">
-                        Chairs <span class="caret"></span>
+                    <a class="nav-link" href="{{ url('/articles') }}">
+                        Your Articles <span class="caret"></span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/desks') }}">
-                        Desks <span class="caret"></span>
+                    <a class="nav-link" href="{{ url('/orders') }}">
+                        History <span class="caret"></span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/orders/create') }}">
+                        Make an Order <span class="caret"></span>
                     </a>
                 </li>
             </ul>
