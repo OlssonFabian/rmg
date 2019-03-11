@@ -31,7 +31,8 @@ return [
     ],
 
     'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+        'secret' =>
+        env('SPARKPOST_SECRET'),
     ],
 
     'stripe' => [
@@ -43,5 +44,17 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+
+    'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('GITHUB_CALLBACK'),
+    ],
+
+    'facebook' => [
+    'client_id' => env('FACEBOOK_CLIENT_ID'),  // Your Facebook App ID
+    'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your Facebook App Secret
+    'redirect' => env('FACEBOOK_CALLBACK_URL'),
+],
 
 ];

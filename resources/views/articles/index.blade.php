@@ -9,8 +9,8 @@
 			<li><a href="/articles/{{ $article->id }}">{{ $article->title }}</a></li>
 		@endforeach
 		</ol>
-  
-  
+
+
   </div>
 
 
