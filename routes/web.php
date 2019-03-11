@@ -20,3 +20,6 @@ Route::middleware(['auth'])->group(function() {
 	Route::resource('/orders', 'OrderController');
 	Route::get('/dashboard', 'DashboardController@index');
 });
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');

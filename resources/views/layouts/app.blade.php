@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'RMG Start') }}</title>
+    <title>RMG</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/rentmygear.png" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -17,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     
@@ -70,6 +72,10 @@
 
         .m-b-md {
             margin-bottom: 30px;
+        }
+
+        .footer {
+            margin-top: 60vh;
         }
 
     </style>
