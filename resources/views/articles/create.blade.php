@@ -1,6 +1,6 @@
 @extends('layouts/app')
-@include('includes/status')
-@include('includes/validation_errors')
+@include('partials/status')
+@include('partials/validation_errors')
 @section('content')
   <div class="container mt-3">
 

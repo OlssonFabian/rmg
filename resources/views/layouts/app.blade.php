@@ -74,6 +74,10 @@
             margin-bottom: 30px;
         }
 
+        .footer {
+            margin-top: 60vh;
+        }
+
     </style>
     
 </head>
