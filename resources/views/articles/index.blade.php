@@ -10,7 +10,7 @@
 		@include('partials/status')
 
 		<ol>
-		@foreach($articles as $article)
+		@foreach($articles->all() as $article)
 			<li><a href="/articles/{{ $article->id }}">{{ $article->name }}</a></li>
 		@endforeach
 		</ol>
