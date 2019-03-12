@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('town');
             $table->string('email');
+            $table->boolean('confirmed')->default(false);
             $table->date('date_start');
             $table->date('date_end');
             $table->timestamps();

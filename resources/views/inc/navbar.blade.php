@@ -17,7 +17,7 @@
                         Dashboard <span class="caret"></span>
                     </a>
                 </li>
-                @endauth
+                
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/articles') }}">
@@ -36,6 +36,7 @@
                         Make an Order <span class="caret"></span>
                     </a>
                 </li>
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
