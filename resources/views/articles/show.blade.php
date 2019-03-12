@@ -4,6 +4,7 @@
 
 @section('content')
 	<div class="container mt-3">
-       <p>hejejehejeeh</p>
+       <p>{{$articles->name}}</p>
+       <p>{{$articles->description}}</p>
 	</div>
 @endsection
