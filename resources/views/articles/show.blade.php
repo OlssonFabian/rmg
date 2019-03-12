@@ -7,4 +7,5 @@
        <p>{{$articles->name}}</p>
        <p>{{$articles->description}}</p>
 	</div>
+    <img src={{image_url}}>
 @endsection
