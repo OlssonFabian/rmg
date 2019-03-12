@@ -15,6 +15,6 @@
 		@endforeach
 		</ol>
 
-		<a href="/articles/create">Create a New Article</a>
+		<a href="/articles/create">Create rentable</a>
 	</div>
 @endsection

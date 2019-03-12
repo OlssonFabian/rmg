@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Article;
+use App\Category;
 class ArticleController extends Controller
 {
     protected $validation_rules = [
@@ -34,7 +35,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles/create');
+        $categories= Category::all();
+        //dd($categories);
+        return view('articles/create', ['categories' => $categories]);
     }
 
     /**
@@ -68,7 +71,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        return view('articles/show', ['articles' => Article::findOrFail($id)])->with($id);
+        return view('articles/show', ['articles' => $id]);
     }
 
     /**
