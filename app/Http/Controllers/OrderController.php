@@ -6,6 +6,7 @@ use Auth;
 use App\Order;
 use App\Article;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,8 +16,8 @@ class OrderController extends Controller
 		'article_id' => 'required',
         'date_start' => 'required',
         'date_end' => 'required',
+    ];
 
-	];
     /**
      * Display a listing of the resource.
      *
@@ -24,11 +25,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('user_id', Auth::id())->get();  
-        foreach($articles as $article) {
-            $orders = Order::where('article_id', $article->id)->get();
-            return view('orders/index', ['orders' => $orders]);
-        }
+        return view('orders/index', [
+            'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->get(),
+            'orders' => Auth::user()->incomingOrders,
+        ]);
     }
 
     /**
@@ -38,8 +38,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $articles = Article::where('user_id', '!=', Auth::id())->get();
-        return view('orders/create', ['articles' => $articles]);
+        return view('orders/create', [
+            'articles' => Article::where('user_id', '!=', Auth::id())->get()
+        ]);
     }
 
     /**
@@ -54,11 +55,7 @@ class OrderController extends Controller
 
         $order = new Order();
         $order->article_id = $valiData['article_id'];
-        $order->name = Auth::user()->name;
-        $order->phone_nr = Auth::user()->phone_nr;
-        $order->address = Auth::user()->address;
-        $order->town = Auth::user()->town;
-        $order->email = Auth::user()->email;
+        $order->user_id = Auth::id();
         $order->date_start = $valiData['date_start'];
         $order->date_end = $valiData['date_end'];
         $order->save();
@@ -73,15 +70,14 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {
-        $id = Auth::id();
-        $articles = Article::where('user_id', $id)->get();
-        $category = $articles[0]->category;
+    {   
+        $temp = $order->article()->get();
         return view('orders/show', [
             'order' => $order,
-            'articles' => $articles,
-            'category' => $category
-            ]);
+            'user' => Auth::user(),
+            'articles' => Auth::user()->articles()->get(),
+            'category' => $temp[0]->category()->get(),
+        ]);
     }
 
     /**
@@ -92,7 +88,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view('orders/edit', ['order' => $order]);
     }
 
     /**
@@ -104,7 +100,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $valiData = $request->validate($this->validation_rules);
+
+        $order->article_id = $valiData['article_id'];
+        $order->date_start = $valiData['date_start'];
+        $order->date_end = $valiData['date_end'];
+        $order->confirmed = true;
+        $order->save();
+        return redirect('/orders/' . $order->id)->with('status', 'Order Confirmed!');
     }
 
     /**
@@ -115,6 +118,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect('/orders');
     }
 }
