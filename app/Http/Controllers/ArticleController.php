@@ -23,7 +23,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-    // return view('articles/index');
+        $articles = Auth::user()->articles;
+        return view('articles/index', ['articles' => $articles]);
     }
 
     /**
@@ -67,7 +68,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('articles/show', ['articles' => Article::findOrFail($id)])->with($id);
     }
 
     /**
