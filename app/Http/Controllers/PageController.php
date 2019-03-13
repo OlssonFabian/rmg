@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function welcome() {
+    public function welcome(Article $article) {
 		$msg = "Please make a registration to use our services";
 
-		
+		$articles = $article->all();
 
 		if (Auth::check()) {
 			$user = Auth::user();
@@ -19,6 +19,6 @@ class PageController extends Controller
 			$msg = "You are logged in as {$user->name}!";
 		}
 
-		return view('welcome', ['msg' => $msg]);
+		return view('welcome', ['msg' => $msg, 'articles' => $articles]);
 	}
 }
