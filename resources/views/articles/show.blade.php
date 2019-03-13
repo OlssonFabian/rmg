@@ -13,6 +13,6 @@
     <p>material: {{$article->category->name}}</p>
     <p>Skapad: {{$article->created_at}}</p>
 
-
+	<a href="/articles/{{ $article->id }}/edit" class="btn btn-warning">Edit Article</a>
 </div>
 @endsection
