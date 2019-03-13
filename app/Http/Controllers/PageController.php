@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Article;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function welcome() {
 		$msg = "Please make a registration to use our services";
+
+		
 
 		if (Auth::check()) {
 			$user = Auth::user();
