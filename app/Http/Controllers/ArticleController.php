@@ -85,9 +85,13 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        
+        return view('articles/edit', [
+            'article' => $article,
+            'categories' => Category::all()
+            ]);
     }
 
     /**
@@ -97,9 +101,18 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        $validData = $request->validate($this->validation_rules);
+
+        $article->name = $validData['name'];
+        $article->description = $validData['description'];
+        $article->rent_price = $validData['rent_price'];
+        $article->category_id = $validData['category_id'];
+        $article->image_url = $validData['image_url'];
+        $article->save();
+
+        return redirect('articles/')->with('status', 'Your article is updated');
     }
 
     /**
@@ -108,8 +121,12 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+
+
+/* $article->delete();
+
+return redirect('articles/')->with('status', 'Article successfully deleted!'); */
     }
 }
