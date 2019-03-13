@@ -27,7 +27,13 @@
 
         @foreach($orders as $order)
             <ul class="list-group mt-3">
-                <li class="list-group-item"><a href="/orders/{{ $order->id }}">Order Number: {{ $order->id }} ({{ $order->article->name }})</a></li>
+                <li class="list-group-item">Order Number:<a href="/orders/{{ $order->id }}"> {{ $order->id }} ({{ $order->article->name }})</a></li>
+                @if($order->daysUntilStart() > 0)
+                    <li class="list-group-item">Days until your article will go on loan: {{ $order->daysUntilStart() }}</li>
+                @endif
+                @if($order->daysUntilStart() == 0)
+                    <li class="list-group-item">Your article will go on loan today 🕺🏼 </li>
+                @endif
             </ul>
         <br>
         <br>

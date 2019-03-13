@@ -7,6 +7,7 @@ use App\Order;
 use App\Article;
 use App\User;
 use App\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -25,6 +26,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        
         return view('orders/index', [
             'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->get(),
             'orders' => Auth::user()->incomingOrders,
@@ -39,7 +41,8 @@ class OrderController extends Controller
     public function create()
     {
         return view('orders/create', [
-            'articles' => Article::where('user_id', '!=', Auth::id())->get()
+            'articles' => Article::where('user_id', '!=', Auth::id())->get(),
+            'today' => Carbon::parse('today')->toDateString(),
         ]);
     }
 
@@ -71,12 +74,16 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {   
-        $temp = $order->article()->get();
+        $article = Auth::user()->articles()->get();
+        $bookedArticle = $order->article()->get();
         return view('orders/show', [
             'order' => $order,
-            'user' => Auth::user(),
+            'user' => User::where('id', $order->user_id)->get(),
             'articles' => Auth::user()->articles()->get(),
-            'category' => $temp[0]->category()->get(),
+            'bookedArticle' => $order->article()->get(),
+            'category' => $article[0]->category()->get(),
+            'bookedArticleCategory' => $bookedArticle[0]->category()->get(),
+            'totalprice' => $bookedArticle[0]->rent_price * ($order->numberOfDays()+1),
         ]);
     }
 
