@@ -7,14 +7,13 @@
     <h1>Welcome to Rent My Gear(Chair)</h1>
 
     <br><br><br>
-    $type=0;
     <div class="btn-group">
         <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li><button onclick="<?php $type=1;?>">Plast</button></li>
-            <li><button onclick="<?php $type=2;?>">Trä</button></li>
-            <li><button onclick="<?php $type=3;?>">Stål</button></li>
-            <li><button onclick="<?php $type=4;?>">Alluminium</button></li>
+            <li><a href="1">Plast</a></li>
+            <li><a href="2">Trä</a></li>
+            <li><a href="3">Stål</a></li>
+            <li><a href="4">Alluminium</a></li>
         </ul>
     </div>
         @foreach ($articles->chunk(3) as $articleChunk)
