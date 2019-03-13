@@ -10694,3 +10694,7 @@ a.nav-link:hover {
   color: #FFFFFF;
 }
 
+.en-bild {
+  margin-top: 1px;
+  border: none!important;
+}

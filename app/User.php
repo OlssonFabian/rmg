@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Article;
+use App\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -42,8 +43,16 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
     }
 
+    public function incomingOrders() {
+        return $this->hasManyThrough(Order::class, Article::class);
+    }
+
+    public function outgoingOrders() {
+        return $this->hasMany(Order::class);
+    }
+
     public function identities()
     {
         return $this->hasMany('App\SocialIdentity');
-}
+    }
 }
