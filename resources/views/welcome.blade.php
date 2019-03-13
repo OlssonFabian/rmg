@@ -6,9 +6,15 @@
     <div class="container text-center">
     <h1>Welcome to Rent My Gear(Chair)</h1>
     <br><br><br>
-    @if ($material == $category->id)
-        
-    @endif
+    <div class="btn-group">
+        <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li><a href="1">Plast</a></li>
+            <li><a href="2">Trä</a></li>
+            <li><a href="3">Stål</a></li>
+            <li><a href="4">Alluminium</a></li>
+        </ul>
+    </div>
         @foreach ($articles->chunk(3) as $articleChunk)
             <div class="row">
                 @foreach($articleChunk as $article)
