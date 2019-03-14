@@ -5,6 +5,7 @@
 @section('content')
     <div class="container text-center">
     <h1>Welcome to Rent My Gear(Chair)</h1>
+
     <br><br><br>
     <div class="btn-group">
         <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
@@ -31,7 +32,6 @@
                                             <p>Material: {{ $category->name }}</p>
                                         @endif
                                     @endforeach
-                                    <a href="{{ url('/orders/create') }}" class="btn btn-success" role="button">Order</a>
                                 </div>
                                 <br><br><br>
                             </div>
@@ -40,5 +40,6 @@
                 @endforeach
             </div>
         @endforeach
+             <a href="{{ url('/orders/create') }}" class="btn btn-success" role="button">Make an Order</a>
     </div>
 @endsection
