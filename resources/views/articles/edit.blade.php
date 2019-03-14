@@ -10,7 +10,7 @@
       @method('PUT')
       <div class="form-group">
         <input type="text" name="name" id="name"class="form-control" placeholder="Article Name" value={{ $article->name}} or {{ old('name') }}  ><br>
-        <input type="text" name="description" id="description"class="form-control" placeholder="Description" value='{{ $article->description }} or {{ old($article->description) }}'><br>
+        <input type="text" name="description" id="description"class="form-control" placeholder="Description" value='{{ $article->description }}  {{ old($article->description) }}'><br>
         <select name="category_id" class="form-control" >
             @foreach($categories as $category)
             <option value="{{$category->id}}"> {{$category->name}} </option>
