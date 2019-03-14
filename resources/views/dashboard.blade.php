@@ -18,7 +18,7 @@
                         <br>
                         <ul>
                             <li><h5><a href="{{ url('/articles') }}">See Your Articles</a></h5></li>
-                            <li><h5><a href="{{ url('/history') }}">See Your History</a></h5></li>
+                            <li><h5><a href="{{ url('/orders') }}">See Your History</a></h5></li>
                         </ul>
                     </div>
                 </div>
