@@ -4,16 +4,18 @@
 
 @section('content')
     <div class="container text-center">
-    <h1>Welcome to Rent My Gear</h1>
-
+    <h1>Welcome to Rent My Gear(Chair)</h1>
     <br><br><br>
     <div class="btn-group">
         <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <li><a href="1">Plast</a></li>
-            <li><a href="2">Trä</a></li>
-            <li><a href="3">Stål</a></li>
-            <li><a href="4">Alluminium</a></li>
+            @foreach ($categories as $category)
+            @if (Auth::check())
+               <li> <a href="/categories/{{$category->id}}"> {{$category->name}} </a> </li>
+            @else
+                <li> <a href="/login"> {{$category->name}} </a> </li>
+            @endif
+            @endforeach
         </ul>
     </div>
         @foreach ($articles->chunk(3) as $articleChunk)
@@ -24,7 +26,7 @@
                             <img src="{{ $article->image_url }}" alt="..." style="max-height: 150px" class="img-responsive">
                             <div class="caption">
                                 <h3>{{ $article->name }}</h3>
-                                <p>{{ $article->description }}</p>  
+                                <p>{{ $article->description }}</p>
                                 <div class="clearfix">
                                     <div class="price">${{ $article->rent_price }}</div>
                                     @foreach ($categories as $category)
@@ -32,6 +34,7 @@
                                             <p>Material: {{ $category->name }}</p>
                                         @endif
                                     @endforeach
+                                    <a href="{{ url('/orders/create') }}" class="btn btn-success" role="button">Order</a>
                                 </div>
                                 <br><br><br>
                             </div>
@@ -40,6 +43,5 @@
                 @endforeach
             </div>
         @endforeach
-             <a href="{{ url('/orders/create') }}" class="btn btn-success" role="button">Make an Order</a>
     </div>
 @endsection
