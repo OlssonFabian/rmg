@@ -22,5 +22,11 @@ class PageController extends Controller
 		}
 
 		return view('welcome', ['msg' => $msg, 'articles' => $articles, 'categories' => $categories]);
-	}
+    }
+    public function index($catID)
+    {
+           // dd($articles = Article::Where('category_id',$catID)->get());
+
+        return view('categories/index', ['articles' => $articles = Article::Where('category_id',$catID)->get()]);
+    }
 }

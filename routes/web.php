@@ -14,10 +14,12 @@
 Auth::routes();
 
 Route::get('/', 'PageController@welcome');
+Route::get('/categories/{catID}' , 'PageController@index');
+
 
 Route::middleware(['auth'])->group(function() {
-	Route::resource('/articles', 'ArticleController');
-	Route::resource('/orders', 'OrderController');
+    Route::resource('/articles', 'ArticleController');
+    Route::resource('/orders', 'OrderController');
 	Route::get('/dashboard', 'DashboardController@index');
 });
 

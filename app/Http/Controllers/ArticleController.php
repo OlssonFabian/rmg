@@ -87,7 +87,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        
+
         return view('articles/edit', [
             'article' => $article,
             'categories' => Category::all()
@@ -128,5 +128,9 @@ class ArticleController extends Controller
 /* $article->delete();
 
 return redirect('articles/')->with('status', 'Article successfully deleted!'); */
+    }
+    public function filterByCategory($category) {
+        $category = Category::find($category);
+        return view('articles.category', ['category' => $category]);
     }
 }
