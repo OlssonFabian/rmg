@@ -12,7 +12,7 @@
       <input type="text" name="name" id="name" class="form-control"
         placeholder="Article Name" value={{ old('name') ? old('name') : $article->name }} ><br>
       <input type="text" name="description" id="description"
-        class="form-control" placeholder="Description" value={{ old('description') ? old('description') : $article->description }} ><br>
+        class="form-control" placeholder="Description" value="{{ old('description') ? old('description') : $article->description }} "><br>
       <select name="category_id" class="form-control">
         @foreach($categories as $category)
         <option value="{{$category->id}}"> {{$category->name}} </option>
