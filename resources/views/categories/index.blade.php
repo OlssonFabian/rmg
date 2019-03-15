@@ -3,7 +3,6 @@
 @section('content')
 	<div class="container mt-3">
 
-        <p>all articles goes here aswell</p>
         @foreach($articles as $article)
             <div class="col-3">
                 <h2 class="text-center">{{ $article->name }}</h2>
@@ -13,6 +12,7 @@
                 <p class="text-center">{{ $article->rent_price }}</p>
             </div>
 		@endforeach
+            <a href="{{ url()->previous() }}">Back</a>
 
 	</div>
 @endsection

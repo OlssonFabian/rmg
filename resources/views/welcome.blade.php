@@ -10,7 +10,11 @@
         <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
         <ul class="dropdown-menu">
             @foreach ($categories as $category)
-                <li> <a href="/categories/{{$category->id}}"> {{$category->name}} </a> </li>
+            @if (Auth::check())
+               <li> <a href="/categories/{{$category->id}}"> {{$category->name}} </a> </li>
+            @else
+                <li> <a href="/login"> {{$category->name}} </a> </li>
+            @endif
             @endforeach
         </ul>
     </div>
