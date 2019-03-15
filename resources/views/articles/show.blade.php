@@ -20,7 +20,7 @@
             <input type="submit" value="Delete Article" class="btn btn-danger">
       </form> --}}
 
-      <a href="/articles/{{ $article->id }}/edit" class="btn btn-warning">Edit
+      <a href="/articles/{{ $article->slug }}/edit" class="btn btn-warning">Edit
             Article</a>
 </div>
 @endsection

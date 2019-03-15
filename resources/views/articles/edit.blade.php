@@ -4,7 +4,7 @@
 @section('content')
 <div class="container mt-3">
 
-  <form method="POST" action="/articles/{{$article->id}}">
+  <form method="POST" action="/articles/{{$article->slug}}">
 
     @csrf
     @method('PUT')
