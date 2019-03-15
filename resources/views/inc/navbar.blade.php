@@ -31,11 +31,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/orders/create') }}">
-                        Make an Order <span class="caret"></span>
-                    </a>
-                </li>
                 @endauth
             </ul>
 

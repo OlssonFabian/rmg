@@ -15,8 +15,8 @@ class OrderController extends Controller
 
     protected $validation_rules = [
 		'article_id' => 'required',
-        'date_start' => 'required',
-        'date_end' => 'required',
+        'date_start' => 'required|after:today',
+        'date_end' => 'required|after_or_equal:date_start',
     ];
 
     /**
@@ -26,10 +26,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        
+        $order = Auth::user()->outgoingOrders()->where('confirmed', 1)->get();
+        $article = Article::where('id', $order[0]->article_id)->get();
         return view('orders/index', [
-            'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->get(),
-            'orders' => Auth::user()->incomingOrders,
+        'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->get(),
+        'orders' => Auth::user()->incomingOrders,
+        'ownerInfo' => User::where('id', $article[0]->user_id)->get(),
         ]);
     }
 
@@ -40,10 +42,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders/create', [
-            'articles' => Article::where('user_id', '!=', Auth::id())->get(),
-            'today' => Carbon::parse('today')->toDateString(),
-        ]);
+        //
     }
 
     /**
