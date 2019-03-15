@@ -13,6 +13,6 @@
 		@endforeach
 		</ol>
 
-		<a href="/articles/create">Create rentable</a>
+		<a href="/articles/create" class="btn btn-success">Create Rentable</a>
 	</div>
 @endsection
