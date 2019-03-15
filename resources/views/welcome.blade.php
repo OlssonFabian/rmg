@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container text-center">
-    <h1>Welcome to Rent My Gear(Chair)</h1>
+    <h1>Welcome to Rent My Gear</h1>
 
     <br><br><br>
     <div class="btn-group">

@@ -9,11 +9,8 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function welcome(Article $article, Category $category) {
+    public function welcome() {
 		$msg = "Please make a registration to use our services";
-
-		$articles = $article->all();
-		$categories = $category->all();
 
 		if (Auth::check()) {
 			$user = Auth::user();
@@ -21,6 +18,6 @@ class PageController extends Controller
 			$msg = "You are logged in as {$user->name}!";
 		}
 
-		return view('welcome', ['msg' => $msg, 'articles' => $articles, 'categories' => $categories]);
+		return view('welcome', ['msg' => $msg, 'articles' => Article::all(), 'categories' => Category::all()]);
 	}
 }
