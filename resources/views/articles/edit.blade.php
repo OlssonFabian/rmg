@@ -10,7 +10,7 @@
     @method('PUT')
     <div class="form-group">
       <input type="text" name="name" id="name" class="form-control"
-        placeholder="Article Name" value={{ old('name') ? old('name') : $article->name }} ><br>
+        placeholder="Article Name" value="{{ old('name') ? old('name') : $article->name }}"><br>
       <input type="text" name="description" id="description"
         class="form-control" placeholder="Description" value="{{ old('description') ? old('description') : $article->description }} "><br>
       <select name="category_id" class="form-control">
@@ -19,9 +19,9 @@
         @endforeach
       </select>
       <input type="number" name="rent_price" id="rent_price"
-        class="form-control" placeholder="Price" value={{ old('rent_price') ? old('rent_price') : $article->rent_price }}><br>
+        class="form-control" placeholder="Price" value="{{ old('rent_price') ? old('rent_price') : $article->rent_price }}"><br>
       <input type="text" name="image_url" id="image_url" class="form-control"
-        placeholder="Image URL" value={{ old('image_url') ? old('image_url') : $article->image_url }}><br>
+        placeholder="Image URL" value="{{ old('image_url') ? old('image_url') : $article->image_url }}"><br>
 
       <input type="submit" value="Save Changes" class="btn btn-primary">
     </div>
