@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
     public function welcome(Article $article, Category $category) {
 	    $msg = "Please make a registration to use our services";
 

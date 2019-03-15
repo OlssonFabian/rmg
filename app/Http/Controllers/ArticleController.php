@@ -24,8 +24,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Auth::user()->articles;
-        return view('articles/index', ['articles' => $articles]);
+        return view('articles/index', ['articles' => Auth::user()->articles]);
     }
 
     /**
@@ -35,9 +34,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categories= Category::all();
-        //dd($categories);
-        return view('articles/create', ['categories' => $categories]);
+        return view('articles/create', ['categories' => Category::all()]);
     }
 
     /**
@@ -52,12 +49,27 @@ class ArticleController extends Controller
         $validData = $request->validate($this->validation_rules);
 
         $article = new Article();
-		$article->user_id = Auth::user()->id;
+        $article->user_id = Auth::user()->id;
         $article->name = $validData['name'];
         $article->description = $validData['description'];
         $article->rent_price = $validData['rent_price'];
         $article->category_id = $validData['category_id'];
         $article->image_url = $validData['image_url'];
+
+        $article->slug = str_slug($request->name);
+
+        $latestSlug= 
+            Article::whereRaw("slug RLIKE '^{$article->slug}(-[0-9]*)?$'")
+                ->latest('id')
+                ->pluck('slug');
+
+        if ($latestSlug) {
+            $pieces = explode('-', $latestSlug);
+            $number = intval(end($pieces));
+            $article->slug .= '-' . ($number + 1);
+
+        }
+
         $article->save();
 
         return redirect('articles/create')->with('status', 'Your article is now up for rent!');
@@ -71,12 +83,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        // $article = Article::find($id);
         return view('articles/show', [
             'article' => $article,
             'town' => $article->user->town]);
-        //$id = Article::find($id);
-        //return view('articles/show', ['id' => $id]);
     }
 
     /**
@@ -110,6 +119,7 @@ class ArticleController extends Controller
         $article->rent_price = $validData['rent_price'];
         $article->category_id = $validData['category_id'];
         $article->image_url = $validData['image_url'];
+    
         $article->save();
 
         return redirect('articles/')->with('status', 'Your article is updated');
