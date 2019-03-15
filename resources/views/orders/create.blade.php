@@ -13,8 +13,8 @@
             @csrf
             <div class="row">
                 <div class="col-12">
-                    <input type="date" class="form-control mt-2" placeholder="Rent from: ex 2019-01-01" name="date_start">
-                    <input type="date" class="form-control mt-2" placeholder="Rent to: ex 2019-01-01" name="date_end">
+                    <input type="date" class="form-control mt-2" placeholder="Rent from: ex 2019-01-01" name="date_start" min="{{ $today }}">
+                    <input type="date" class="form-control mt-2" placeholder="Rent to: ex 2019-01-01" name="date_end" min="{{ $today }}">
                 </div>
                 @foreach($articles as $article)
                 <div class="col-md-6">
