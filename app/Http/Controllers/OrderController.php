@@ -25,8 +25,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    {   
         return view('orders/index', [
             'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->orderBy('date_start')->get(),
             'orders' => Auth::user()->incomingOrders()->orderBy('date_start')->get(),

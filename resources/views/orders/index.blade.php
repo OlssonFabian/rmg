@@ -20,8 +20,8 @@
                 <ul class="list-group">
                         @foreach($ownOrders as $ownOrder)
                     <li class="list-group-item mt-3"><a href="/orders/{{ $ownOrder->id }}"><em>Order Number: {{ $ownOrder->id }}</em></a><br>
-                    <em style="color: red;">Article Name:</em> {{ $ownOrder->article->name }}<br>
-                    <em style="color: red;">Start Date:</em> {{ $ownOrder->date_start }}<br><em style="color: red;">Stop Date:</em> {{ $ownOrder->date_end }}<br></li>
+                    <em style="color: red;">Article Name:</em><a href="/articles/{{ $ownOrder->article->slug }}"> {{ $ownOrder->article->name }}</a><br>
+                    <em style="color: red;">Start Date:</em> {{ $ownOrder->formatDateStart() }}<br><em style="color: red;">Stop Date:</em> {{ $ownOrder->formatDateEnd() }}<br></li>
                     @endforeach
                 <ul>
             
@@ -44,8 +44,8 @@
                 <ul class="list-group">
                         @foreach($orders as $order)
                     <li class="list-group-item mt-3"><em><a href="/orders/{{ $order->id }}">Order Number: {{ $order->id }}</a></em><br>
-                    <em style="color: red;">Article Name:</em> {{ $order->article->name }}<br>
-                    <em style="color: red;">Start Date:</em> {{ $order->date_start }}<br><em style="color: red;">Stop Date:</em> {{ $order->date_end }}<br></li>
+                    <em style="color: red;">Article Name:</em><a href="/articles/{{ $order->article->slug }}"> {{ $order->article->name }}</a><br>
+                    <em style="color: red;">Start Date:</em> {{ $order->formatDateStart() }}<br><em style="color: red;">Stop Date:</em> {{ $order->formatDateEnd() }}<br></li>
                     @if($order->daysUntilStart() > 0)
                         <li class="list-group-item">Days until your article will go on loan: {{ $order->daysUntilStart() }}</li>
                     @endif
