@@ -26,13 +26,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Auth::user()->outgoingOrders()->where('confirmed', 1)->get();
-        $article = Article::where('id', $order[0]->article_id)->get();
+
         return view('orders/index', [
-        'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->get(),
-        'orders' => Auth::user()->incomingOrders,
-        'ownerInfo' => User::where('id', $article[0]->user_id)->get(),
-        ]);
+            'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->orderBy('date_start')->get(),
+            'orders' => Auth::user()->incomingOrders()->orderBy('date_start')->get(),
+            ]);
     }
 
     /**
@@ -73,14 +71,16 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {   
-        $article = Auth::user()->articles()->get();
+        $article = Article::where('id', $order->article_id)->get();
+        $secondArticle = Auth::user()->articles()->get();
         $bookedArticle = $order->article()->get();
         return view('orders/show', [
             'order' => $order,
             'user' => User::where('id', $order->user_id)->get(),
+            'incommingOrderUserDetails' => User::where('id', $article[0]->user_id)->get(),
             'articles' => Auth::user()->articles()->get(),
             'bookedArticle' => $order->article()->get(),
-            'category' => $article[0]->category()->get(),
+            'category' => $secondArticle[0]->category()->get(),
             'bookedArticleCategory' => $bookedArticle[0]->category()->get(),
             'totalprice' => $bookedArticle[0]->rent_price * ($order->numberOfDays()+1),
         ]);
