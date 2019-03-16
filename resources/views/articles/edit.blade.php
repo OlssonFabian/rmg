@@ -26,5 +26,7 @@
       <input type="submit" value="Save Changes" class="btn btn-primary">
     </div>
   </form>
+  <br><br><br>
+  <a href="/articles">&laquo; Back to your articles</a>
 </div>
 @endsection

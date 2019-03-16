@@ -13,6 +13,8 @@
       <p><em>Category: </em> {{$article->category->name}}</p>
       <p><em>Created: </em>{{$article->created_at}}</p>
 
+
+      {{--  Aarons kommentar:  --}}
 {{--  Har implementerat delete funktionalitet men det fanns inte med på kraven så kommenterar ut den  <form method="POST" action="/articles/{{$article->id}}">
             @csrf
             @method('DELETE')
@@ -20,7 +22,10 @@
             <input type="submit" value="Delete Article" class="btn btn-danger">
       </form> --}}
 
-      <a href="/articles/{{ $article->slug }}/edit" class="btn btn-warning">Edit
-            Article</a>
+      @if($article->user_id == Auth::id())
+            <a href="/articles/{{ $article->slug }}/edit" class="btn btn-warning">Edit Article</a>
+      @endif      
+      <br><br><br>
+      <a href="/articles">&laquo; Back to your articles</a>
 </div>
 @endsection
