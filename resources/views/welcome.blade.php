@@ -34,6 +34,7 @@
                                             <p><em><b>Category:</b></em> {{ $category->name }}</p>
                                         @endif
                                     @endforeach
+                                    <a href="/articles/{{ $article->slug }}">More Information</a>   
                                 </div>
                                 <br><br><br>
                             </div>

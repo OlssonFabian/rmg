@@ -29,12 +29,4 @@ class Order extends Model
     public function daysUntilStart() {
         return Carbon::now()->diffInDays($this->date_start, false);
     }
-
-    public function formatDateStart() {
-        return Carbon::parse($this->date_start)->toDateString();
-    }
-
-    public function formatDateEnd() {
-        return Carbon::parse($this->date_end)->toDateString();
-    }
 }
