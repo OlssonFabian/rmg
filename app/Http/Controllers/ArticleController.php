@@ -96,11 +96,14 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        
-        return view('articles/edit', [
-            'article' => $article,
-            'categories' => Category::all()
-            ]);
+        if($article->user_id == Auth::id()) {
+            return view('articles/edit', [
+                'article' => $article,
+                'categories' => Category::all()
+                ]);
+        } else {
+            return redirect('/')->with('notOwner', 'You do not own this!');
+        }
     }
 
     /**
