@@ -28,8 +28,8 @@
                 @endif
             @endforeach
             @if($order->user_id == Auth::id())
-                @foreach($bookedArticleCategory as $bookedArticleCategoryItem)
-                    <li class="list-group-item"><span style="color: red;">Category:</span> {{ $bookedArticleCategoryItem->name }}</li>
+                @foreach($category as $categoryItem)
+                    <li class="list-group-item"><span style="color: red;">Category:</span> {{ $categoryItem->name }}</li>
                 @endforeach    
             @endif
             @if($order->user_id != Auth::id())
