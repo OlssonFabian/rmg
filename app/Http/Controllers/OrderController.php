@@ -68,8 +68,7 @@ class OrderController extends Controller
             'allArticles' => Article::all(),
             'articles' => Auth::user()->articles()->get(),
             'bookedArticle' => $order->article()->get(),
-            'category' => Auth::user()->articles()->get('category_id'),
-            'bookedArticleCategory' => Category::find($id),
+            'category' => Category::find($id),
             'totalPrice' => $order->article()->get('rent_price'),
         ]);
     }
