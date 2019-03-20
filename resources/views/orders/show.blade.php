@@ -6,7 +6,7 @@
 
     <h1>More information</h1>
     <br>
-    <hr style="border: 1px solid red;">
+    <hr class="red-border">
     <br>
         <ul class="list-group">
             @if($order->user_id != Auth::id())

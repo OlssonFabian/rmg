@@ -27,7 +27,7 @@
         </div> 
         <br><br>
         
-        <hr style="border: 5px solid #006f94; border-radius: 50px;">
+        <hr class="blue-border">
         
         <br><br>
         <div class="jumbotron jumbotron-fluid">
