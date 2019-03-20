@@ -27,19 +27,9 @@ class OrderController extends Controller
     public function index()
     {
     	return view('orders/index', [
-            'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->orderBy('date_start')->get(),
+            'ownOrders' => Auth::user()->outgoingOrders()->orderBy('date_start')->get(),
             'orders' => Auth::user()->incomingOrders()->orderBy('date_start')->get(),
             ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
