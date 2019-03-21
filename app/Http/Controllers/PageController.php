@@ -24,10 +24,17 @@ class PageController extends Controller
 
     public function index($slug)
     {
-        $category = Category::where('slug', $slug)->get();
-        return view('categories/index', [
-            'articles' => $articles = Article::Where('category_id', $category[0]->id)->get(),
-            'today' => Carbon::parse('today')->toDateString(),
-            ]);
+        $categoryItems = Category::where('slug', $slug)->get();
+        foreach($categoryItems as $item){
+            if($slug != $item->slug){
+                return redirect('/')->with('status', 'The category your trying to reach doesnt exist');
+            }
+            else{
+                return view('categories/index', [
+                    'articles' => $articles = Article::Where('category_id', $categoryItems[0]->id)->get(),
+                    'today' => Carbon::parse('today')->toDateString(),
+                    ]);
+            }
+        }
     }
 }
