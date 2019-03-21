@@ -30,11 +30,7 @@
                                 <p><em><b>Description:</b></em> {{ $article->description }}</p>
                                 <div class="clearfix">
                                     <div class="price"><em><b>Price pr Day:</b></em> ${{ $article->rent_price }}</div>
-                                    @foreach ($categories as $category)
-                                        @if ($article->category_id == $category->id)
-                                            <p><em><b>Category:</b></em> {{ $category->name }}</p>
-                                        @endif
-                                    @endforeach
+                                    <div>Category: {{ $article->category->name }}</div>
                                     <a href="/articles/{{ $article->slug }}">More Information</a>   
                                 </div>
                                 <br><br><br>
