@@ -22,20 +22,11 @@ class PageController extends Controller
     return view('welcome', ['msg' => $msg, 'articles' => Article::all(), 'categories' => Category::all()]);
     }
 
-    public function index($slug)
+    public function showCategory(Category $category)
     {
-        $categoryItems = Category::where('slug', $slug)->get();
-        if ($categoryItems) {
-            foreach($categoryItems as $item){
-                return view('categories/index', [
-                    'articles' => $articles = Article::Where('category_id', $item->id)->get(),
-                    'today' => Carbon::parse('today')->toDateString(),
-                    ]);
-            }
-        }
-
-        else{
-            dd($slug);
-        }
+        return view('categories/index', [
+            'articles' => $category->articles,
+            'today' => Carbon::now()->toDateString(),
+        ]);
     }
 }
