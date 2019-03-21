@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'PageController@welcome');
-Route::get('/categories/{catID}' , 'PageController@index');
+Route::get('/categories/{slug}' , 'PageController@index');
 
 
 Route::middleware(['auth'])->group(function() {
