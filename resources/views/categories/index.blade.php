@@ -4,33 +4,30 @@
 	<div class="container mt-3">
 
         @include('partials/validation_errors')
-
-        <div class="row">
-            @foreach($articles as $article)
-            <div class="col-4">
-            @if($article->user_id != Auth::user()->id)
-                <div class="card">
-                    <div class="card-body">
-                        <form method="POST" action="/orders" class="mt-3 form-group">
-                        @csrf
-                            <input type="date" class="form-control mt-2" placeholder="Rent from: ex 2019-01-01" name="date_start" value="{{ old('date_start') }}" min="{{ $today }}">
-                            <input type="date" class="form-control mt-2" placeholder="Rent to: ex 2019-01-01" name="date_end" value="{{ old('date_end') }}" min="{{ $today }}">
-                            <input type="radio" name="article_id" value="{{ $article->id }}"  id="picture">
-                            <label for="picture">
-                                <img src="{{ $article->image_url }}" alt="bild på artikel" height="250" width="250">
-                            </label>
-                            <input type="text" readonly class="form-control-plaintext" value="Article Name: {{ $article->name }}">
-                            <input type="text" readonly class="form-control-plaintext" value="Article Description: {{ $article->description }}">
-                            <input type="text" readonly class="form-control-plaintext" value="Price pr Day: {{ $article->rent_price }} kr">
-                            <p class="text-left"><em><b>Category:</b></em> {{ $article->category->name }}</p>
-                            <input type="submit" class="btn btn-primary mt-3" value="Book Your Order">
-                        </form>          
+           
+                @foreach ($articles->chunk(3) as $articleChunk)
+            <div class="row">
+                @foreach($articleChunk as $article)
+                 @if($article->user_id != Auth::user()->id)
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail text-center">
+                            <img src="{{ $article->image_url }}" alt="..." style="max-height: 150px" class="img-responsive">
+                            <div class="caption">
+                                <h3><em><b>Name:</b></em> {{ $article->name }}</h3>
+                                <p><em><b>Description:</b></em> {{ $article->description }}</p>
+                                <div class="clearfix">
+                                    <div class="price"><em><b>Price pr Day:</b></em> ${{ $article->rent_price }}</div>
+                                    <div>Category: {{ $article->category->name }}</div>
+                                    <a href="/articles/{{ $article->slug }}">More Information</a>   
+                                </div>
+                                <br><br><br>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @endif
+                    @endif
+                @endforeach
             </div>
-            @endforeach
-        </div>
+        @endforeach    
         <br><br><br>
         <a href="{{ url()->previous() }}">&laquo; Back to all Articles</a>
     </div>

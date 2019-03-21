@@ -22,6 +22,7 @@
         @foreach ($articles->chunk(3) as $articleChunk)
             <div class="row">
                 @foreach($articleChunk as $article)
+                @if($article->user_id || $article->user_id != Auth::user()->id)
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail text-center">
                             <img src="{{ $article->image_url }}" alt="..." style="max-height: 150px" class="img-responsive">
@@ -37,6 +38,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         @endforeach
