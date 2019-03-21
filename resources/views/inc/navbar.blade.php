@@ -27,7 +27,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/orders') }}">
-                        History <span class="caret"></span>
+                        Orders <span class="caret"></span>
                     </a>
                 </li>
 

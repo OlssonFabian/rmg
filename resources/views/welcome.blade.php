@@ -1,5 +1,6 @@
 
 @extends('layouts.app')
+@include('partials/notOwner')
 
 
 @section('content')

@@ -27,19 +27,9 @@ class OrderController extends Controller
     public function index()
     {
     	return view('orders/index', [
-            'ownOrders' => Auth::user()->outgoingOrders()->where('confirmed', 1)->orderBy('date_start')->get(),
+            'ownOrders' => Auth::user()->outgoingOrders()->orderBy('date_start')->get(),
             'orders' => Auth::user()->incomingOrders()->orderBy('date_start')->get(),
             ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -59,7 +49,7 @@ class OrderController extends Controller
         $order->date_end = $valiData['date_end'];
         $order->save();
 
-        return redirect('/orders')->with('status', 'Order created successfully!');
+        return redirect('/orders')->with('pending', 'PENDING order');
     }
 
     /**
@@ -91,7 +81,11 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        return view('orders/edit', ['order' => $order]);
+        if($order->user_id == Auth::id()) {
+            return redirect('/')->with('notOwner', 'You do not own this!');
+        } else {
+            return view('orders/edit', ['order' => $order]);
+        }
     }
 
     /**
