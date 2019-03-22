@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Article;
 use App\Category;
+use Carbon\Carbon;
 class ArticleController extends Controller
 {
     protected $validation_rules = [
@@ -85,7 +86,9 @@ class ArticleController extends Controller
     {
         return view('articles/show', [
             'article' => $article,
-            'town' => $article->user->town]);
+            'town' => $article->user->town,
+            'today' => Carbon::parse('today')->toDateString(),
+            ]);
     }
 
     /**
