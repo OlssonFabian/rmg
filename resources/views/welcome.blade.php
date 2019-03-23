@@ -10,13 +10,15 @@
     <div class="btn-group">
         <button type="button" class="btn-btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">All<span class="caret"></span></button>
         <ul class="dropdown-menu">
-            @foreach ($categories as $category)
             @if (Auth::check())
-               <li> <a href="/categories/{{$category->slug}}"> {{$category->name}} </a> </li>
+                @foreach ($categories as $category)
+                    <li> <a href="/categories/{{$category->slug}}"> {{$category->name}} </a> </li>
+                @endforeach
             @else
-                <li> <a href="/login"> {{$category->name}} </a> </li>
-            @endif
-            @endforeach
+                @foreach ($categories as $category)
+                    <li> <a href="/login"> {{$category->name}} </a> </li>
+                @endforeach
+            @endif   
         </ul>
     </div>
     <div class="flex row d-flex justify-content-center">
