@@ -102,7 +102,7 @@ class ArticleController extends Controller
         if($article->user_id == Auth::id()) {
             return view('articles/edit', [
                 'article' => $article,
-                'categories' => Category::all()
+                'categories' => Category::orderBy('name')->get()
                 ]);
         } else {
             return redirect('/')->with('notOwner', 'You do not own this!');
