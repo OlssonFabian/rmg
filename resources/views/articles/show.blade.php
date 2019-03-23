@@ -28,9 +28,6 @@
                 </div>
             @endif
         </div>
-
-
-
       {{--  Aarons kommentar:  --}}
 {{--  Har implementerat delete funktionalitet men det fanns inte med på kraven så kommenterar ut den  <form method="POST" action="/articles/{{$article->id}}">
             @csrf
