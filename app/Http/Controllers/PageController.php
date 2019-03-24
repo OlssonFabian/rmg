@@ -19,7 +19,7 @@ class PageController extends Controller
 		    $msg = "You are logged in as {$user->name}!";
 		}
 
-    return view('welcome', ['msg' => $msg, 'articles' => Article::all(), 'categories' => Category::all()]);
+    return view('welcome', ['msg' => $msg, 'articles' => Article::orderBy('name')->get(), 'categories' => Category::orderBy('name')->get()]);
     }
 
     public function showCategory(Category $category)
