@@ -44,14 +44,3 @@
         </div>
     </div>
 @endsection
-
-<style>
-    .products {
-        margin: 4rem;
-        
-    }
-    .img-responsive {
-        max-height: 150px
-    }
-
-</style>
