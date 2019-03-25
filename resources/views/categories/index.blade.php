@@ -32,14 +32,3 @@
         <a href="{{ url()->previous() }}">&laquo; Back to all Articles</a>
     </div>
 @endsection
-
-<style>
-    .products {
-        margin: 4rem;
-        
-    }
-    .img-responsive {
-        max-height: 150px
-    }
-
-</style>
