@@ -13,11 +13,20 @@
         placeholder="Article Name" value="{{ old('name') ? old('name') : $article->name }}"><br>
       <input type="text" name="description" id="description"
         class="form-control" placeholder="Description" value="{{ old('description') ? old('description') : $article->description }} "><br>
+      
       <select name="category_id" class="form-control">
         @foreach($categories as $category)
-        <option value="{{$category->id}}"> {{$category->name}} </option>
+        {{-- <option value="{{$category->id}}"> {{$category->name}} </option> --}}
+
+@if ($category->id == old('category_id'))
+      <option value="{{$category->id}}" selected>{{$category->name}}</option>
+@else
+      <option value="{{$category->id}}">{{$category->name}}</option>
+@endif
+
         @endforeach
       </select>
+      
       <input type="number" name="rent_price" id="rent_price"
         class="form-control" placeholder="Price" value="{{ old('rent_price') ? old('rent_price') : $article->rent_price }}"><br>
       <input type="text" name="image_url" id="image_url" class="form-control"
