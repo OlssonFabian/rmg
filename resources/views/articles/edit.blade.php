@@ -16,7 +16,7 @@
       
       <select name="category_id" class="form-control">
         @foreach($categories as $category)
-        {{-- <option value="{{$category->id}}"> {{$category->name}} </option> --}}
+        
 
 @if ($category->id == old('category_id'))
       <option value="{{$category->id}}" selected>{{$category->name}}</option>
